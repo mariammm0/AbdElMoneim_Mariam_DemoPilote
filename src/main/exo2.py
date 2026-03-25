@@ -26,7 +26,7 @@ from pystk2_gymnasium.envs import STKRaceMultiEnv, AgentSpec
 from pystk2_gymnasium.definitions import CameraMode
 
 MAX_TEAMS = 7
-MAX_STEPS = 1000
+MAX_STEPS = 200 #l’agent7 va avance sur le circuit pendant exactement 200 pas de temps
 NB_RACES = 1
 
 # Get the current timestamp
@@ -101,12 +101,6 @@ def create_race():
     agents = []
     names = []
 
-    agents.append(Agent1(env, path_lookahead=3))
-    agents.append(Agent2(env, path_lookahead=3))
-    agents.append(Agent3(env, path_lookahead=3))
-    agents.append(Agent4(env, path_lookahead=3))
-    agents.append(Agent5(env, path_lookahead=3))
-    agents.append(Agent6(env, path_lookahead=3))
     agents.append(Agent7(env, path_lookahead=3))
     np.random.shuffle(agents)
 
@@ -138,7 +132,7 @@ def single_race(env, agents, names, scores):
             # check if agents have finished the race
             kart = env.world.karts[i]
             if kart.has_finished_race and not agents[i].isEnd:
-                print(f"{names[i]} has finished race !")
+                print(f"{names[i]} has finished race ! race duration:", steps) #Le nombre de pas de temps écoulés est affiché dans le terminal avec cette ligne
                 nb_finished += 1
                 agents[i].isEnd = True
 
@@ -162,7 +156,7 @@ def single_race(env, agents, names, scores):
     for i in range(MAX_TEAMS):
         scores.append(names[i], pos_avg[i], pos_std[i], dist_avg[i], dist_std[i])
         agents[i].isEnd = False
-    print("race duration:", steps)
+    print("race duration:", steps) 
 
 def main_loop():
     scores = Scores()
