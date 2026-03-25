@@ -12,7 +12,7 @@ class Agent6(KartAgent):
         self.agent_positions = []
         self.obs = None
         self.isEnd = False
-        self.name = "Abd El Moneim Mariam"  #on modifie le nom ici
+        self.name = "Abd El Moneim Mariam 6"  #on modifie le nom ici
         
     def reset(self):
         self.obs, _ = self.env.reset()
