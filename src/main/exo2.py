@@ -132,9 +132,11 @@ def single_race(env, agents, names, scores):
             # check if agents have finished the race
             kart = env.world.karts[i]
             if kart.has_finished_race and not agents[i].isEnd:
-                print(f"{names[i]} has finished race ! race duration:", steps) #Le nombre de pas de temps écoulés est affiché dans le terminal avec cette ligne
+                print(f"{names[i]} has finished race")
+                
                 nb_finished += 1
                 agents[i].isEnd = True
+            print(f"{names[i]} has race duration:", steps) #Le nombre de pas de temps écoulés est affiché dans le terminal avec cette ligne
 
         obs, _, _, _, info = env.step(actions)
 
